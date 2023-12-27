@@ -1,0 +1,8 @@
+.contain{
+    width: 500px;
+    border: 5px solid gray;
+    border-radius: 5%;
+    padding: 1rem;
+    background-color: rgba(127, 255, 212, 0.271);
+    margin: 4rem;
+}
