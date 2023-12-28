@@ -4,6 +4,12 @@ import { useState } from "react";
 function Todo({todoList}){
 
     const [todoArr,setTodoArr] = useState(todoList);
+    // grabbing input tag values
+    // task input
+    const [taskVal,setTaskVal] = useState("");
+    const [dateVal,setDateVal] = useState("");
+
+
 
     function handleDelete(item,event){
         console.log(`deleted task ${item}`);
@@ -23,6 +29,7 @@ function Todo({todoList}){
             date: dateVal
         }
         const newTodoArr = [...todoArr,newTask]
+        // changing the array will cause a re render
         setTodoArr(newTodoArr);
         // change the vals of input 
         setTaskVal('')
@@ -30,10 +37,6 @@ function Todo({todoList}){
 
     }
 
-    // grabbing input tag values
-    // task input
-    const [taskVal,setTaskVal] = useState("");
-    const [dateVal,setDateVal] = useState("");
     let content ;
     if(todoArr.length===0) content = <h1>No items found</h1>
     else content = todoArr.map((elem,i)=>(
