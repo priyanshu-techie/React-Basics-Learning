@@ -1,0 +1,29 @@
+.calcBody{
+    border: 3px solid gray;
+    border-radius: 5%;
+    padding: 1rem;
+    margin: 3rem;
+    width: 300px ;
+}
+.buttons{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+}
+.button{
+    padding: 1rem;
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+    width: 30%;
+    cursor: pointer;
+    margin: 0.1rem;
+    font-weight: bolder;
+
+}
+input{
+    width: 100%;
+    padding: 0.5rem;
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
