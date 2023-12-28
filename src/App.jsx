@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import Header from './components/header'
-import Todo from "./components/todos"
+// import Todo from "./components/todos"
+import TodoWithForm from "./components/todosForm";
 
 export default function App(){
   // get the items from network call
@@ -28,7 +29,8 @@ export default function App(){
   return(
     <div className="container pt-4">
       <Header/>
-      <Todo todoList={todoList}/>
+      {/* <Todo todoList={todoList}/> */}
+      <TodoWithForm todoList={todoList}/>
     </div>
   )
 }

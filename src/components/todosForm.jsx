@@ -3,14 +3,9 @@ import { useState } from "react";
 import { MdAddBox } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 
-function Todo({todoList}){
+function TodoWithForm({todoList}){
 
     const [todoArr,setTodoArr] = useState(todoList);
-    // grabbing input tag values
-    // task input
-    const [taskVal,setTaskVal] = useState("");
-    const [dateVal,setDateVal] = useState("");
-
 
 
     function handleDelete(taskObj){
@@ -18,24 +13,18 @@ function Todo({todoList}){
         setTodoArr(newArr);
     }
 
-    function handleAddTaskClick(){
-        // accessing the inut val 👇
-        // console.log("your task is ",taskVal);
-        // console.log("your date is ",dateVal);
-        
-        if(taskVal === "" || dateVal === "" ) return;
-        // creating a new taskArr
-        const newTask = {
-            task: taskVal,
-            date: dateVal
-        }
-        const newTodoArr = [...todoArr,newTask]
-        // changing the array will cause a re render
-        setTodoArr(newTodoArr);
-        // change the vals of input 
-        setTaskVal('')
-        setDateVal('')
-
+    function handleSubmit(event){
+        event.preventDefault();
+        console.log(event);
+        // this is but again an imperitive way , we need declarative ways for react , so need improvement
+        const task = event.target[0].value;
+        const date = event.target[1].value
+        if(task==""||date=="") return;
+        const taskObj = {task, date};
+        const newArr = [...todoArr, taskObj];
+        setTodoArr(newArr);
+        event.target[0].value= "";
+        event.target[1].value= "";
     }
 
     let content ;
@@ -57,23 +46,23 @@ function Todo({todoList}){
 
     return <div className="container">
         {/* to do adder row */}
-        <div className="row mb-3 mt-3">
+        <form className="row mb-3 mt-3" onSubmit={handleSubmit}>
             <div className="col">
-                <input type="text" value={taskVal} placeholder="Enter your task" onChange={(e)=>setTaskVal(e.target.value)} />
+                <input type="text" name="task"  placeholder="Enter your task" />
             </div>
             <div className="col">
-                <input type="date" value={dateVal} onChange={(e)=>setDateVal(e.target.value)} />
+                <input type="date" name="taskDate"/>
             </div>
             <div className="col">
-                <button type="button" className="btn btn-primary" onClick={handleAddTaskClick} ><MdAddBox /></button>
+                <button type="submit" className="btn btn-primary"><MdAddBox /></button>
             </div>
-        </div>
+        </form>
 
         {/* todos */}           
         {content}
     </div>
 }
 
-export default Todo;
+export default TodoWithForm;
 
 
