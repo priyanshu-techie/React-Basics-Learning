@@ -1,13 +1,26 @@
-# Change the branches to see all my begginer Projects.
+## HERE:
+* sibling shows the problem of maintaining the state in the same level 
+* parent-child-app solves that problem and tries to maintain global and local states 
 
 
-## NOTES
+# THEORY : lifting the state up
 
-* index.html has the root div where all the elmes will be inserted
-* main.jsx is where the app is setup using React , React DOM , React.strictMode, etc.
-* main.jsx has the app component 
-* Inside App.jsx, arrange all the components 
-* Use the component folder to have all the components
-* Make a style folder to have all the css files.
+"Lifting state up" is a term used in React to describe the process of managing state in a parent component and passing that state down to its child components. This approach allows you to share and synchronize state between multiple components.
 
- `NOTE : Many of errors you are getting (Ex- using "class" instead of "className" not giving the {key} is arr.map to uniquely identify elems ) is not  by default.  But by external tools like (ESlint).`
+## Here's a step-by-step explanation of lifting state up:
+
+- Identify Shared State:
+
+- Determine if there's a piece of state that multiple components need to access or modify.
+- Move State to Common Ancestor (Parent) Component:
+
+- Identify the common ancestor (a parent component) of the components that need to share state.
+- Lift the state up by moving it to the nearest common ancestor in the component hierarchy. This common ancestor will become the owner of the state.
+- Pass State as Props:
+
+- Once the state is in the common ancestor, pass it down to the child components as props.
+- Child components receive the state as props and can use it to render content or update their own local state.
+- Handle State Changes in Parent:
+
+- If a child component needs to modify the shared state, pass a callback function from the parent component to the child as a prop.
+- When the child needs to update the state, it calls the callback function provided by the parent, allowing the parent to handle state changes.
