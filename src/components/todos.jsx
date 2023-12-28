@@ -11,10 +11,9 @@ function Todo({todoList}){
 
 
 
-    function handleDelete(item,event){
-        console.log(`deleted task ${item}`);
-        event.target.parentElement.parentElement.style.backgroundColor = "black"
-        event.target.parentElement.parentElement.style.color = "white"
+    function handleDelete(taskObj){
+        const newArr = todoArr.filter((e)=>{return (e.task!==taskObj.task && e.date !== taskObj.date)});
+        setTodoArr(newArr);
     }
 
     function handleAddTaskClick(){
@@ -48,7 +47,7 @@ function Todo({todoList}){
                 {elem.date}
             </div>
             <div className="col">
-                <button type="button" className="btn btn-danger" onClick={(evnt)=>(handleDelete(elem.task,evnt))}>delete</button>
+                <button type="button" className="btn btn-danger" onClick={()=>(handleDelete({task:elem.task,date:elem.date}))}>delete</button>
             </div>
         </div>
     ))
