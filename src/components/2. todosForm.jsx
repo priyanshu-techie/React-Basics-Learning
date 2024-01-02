@@ -9,16 +9,16 @@ function TodoWithForm({todoList}){
 
 
     function handleDelete(taskObj){
+        // remove the object and reset the state
         const newArr = todoArr.filter((e)=>{return (e.task!==taskObj.task && e.date !== taskObj.date)});
         setTodoArr(newArr);
     }
 
     function handleSubmit(event){
         event.preventDefault();
-        console.log(event);
         // this is but again an imperitive way , we need declarative ways for react , so need improvement
         const task = event.target[0].value;
-        const date = event.target[1].value
+        const date = event.target[1].value;
         if(task==""||date=="") return;
         const taskObj = {task, date};
         const newArr = [...todoArr, taskObj];
@@ -28,7 +28,9 @@ function TodoWithForm({todoList}){
     }
 
     let content ;
+    // if no task then render this component
     if(todoArr.length===0) content = <h1>No items found</h1>
+    // else this component
     else content = todoArr.map((elem,i)=>(
         <div className="row mb-3" key={i}>
             <div className="col">
@@ -42,7 +44,6 @@ function TodoWithForm({todoList}){
             </div>
         </div>
     ))
-
 
     return <div className="container">
         {/* to do adder row */}
