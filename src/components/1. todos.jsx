@@ -37,24 +37,6 @@ function Todo({todoList}){
         setDateVal('')
 
     }
-
-    let content ;
-    if(todoArr.length===0) content = <h1>No items found</h1>
-    else content = todoArr.map((elem,i)=>(
-        <div className="row mb-3" key={i}>
-            <div className="col">
-                {elem.task}
-            </div>
-            <div className="col">
-                {elem.date}
-            </div>
-            <div className="col">
-                <button type="button" className="btn btn-danger" onClick={()=>(handleDelete({task:elem.task,date:elem.date}))}><FaTrash /></button>
-            </div>
-        </div>
-    ))
-
-
     return <div className="container">
         {/* to do adder row */}
         <div className="row mb-3 mt-3">
@@ -70,7 +52,20 @@ function Todo({todoList}){
         </div>
 
         {/* todos */}           
-        {content}
+        {todoArr.length?todoArr.map((elem,i)=>(
+        <div className="row mb-3" key={i}>
+            <div className="col">
+                {elem.task}
+            </div>
+            <div className="col">
+                {elem.date}
+            </div>
+            <div className="col">
+                <button type="button" className="btn btn-danger" onClick={()=>(handleDelete({task:elem.task,date:elem.date}))}><FaTrash /></button>
+            </div>
+        </div>
+    )):<h1>No items found</h1>
+        }
     </div>
 }
 
